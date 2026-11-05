@@ -6,6 +6,7 @@
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
 
+#include "bpfj/lib/bpf/lsm_inode.h"
 #include "bpfj/match/bpf/matcher_state.h"
 
 static __always_inline void bpfj_matcher_state_invalidate(
@@ -33,7 +34,7 @@ int BPF_PROG(
 }
 
 SEC("lsm/inode_link")
-int BPF_PROG(
+int BPFJ_LSM_INODE_PROG(
     bpfj_matcher_state_inode_link,
     struct dentry* old_dentry,
     struct inode* dir,

@@ -11,6 +11,7 @@
 #include "bpfj/enforce/bpf/maps.h"
 #include "bpfj/enforce/bpf/types_fs.h"
 #include "bpfj/lib/bpf/logging_bpf.h"
+#include "bpfj/lib/bpf/lsm_inode.h"
 #include "bpfj/match/bpf/file_match_cached.h"
 #include "bpfj/match/bpf/glob_var_bindings.h"
 
@@ -161,7 +162,7 @@ int BPF_PROG(
 }
 
 SEC("lsm/inode_link")
-int BPF_PROG(
+int BPFJ_LSM_INODE_PROG(
     bpfj_fs_inode_link,
     struct dentry* old_dentry,
     struct inode* dir,
@@ -178,7 +179,7 @@ int BPF_PROG(
 }
 
 SEC("lsm/inode_link")
-int BPF_PROG(
+int BPFJ_LSM_INODE_PROG(
     bpfj_fs_inode_link_source,
     struct dentry* old_dentry,
     struct inode* dir,
@@ -188,7 +189,7 @@ int BPF_PROG(
 }
 
 SEC("lsm/inode_create")
-int BPF_PROG(
+int BPFJ_LSM_INODE_PROG(
     bpfj_fs_inode_create,
     struct inode* dir,
     struct dentry* dentry,
@@ -198,7 +199,7 @@ int BPF_PROG(
 }
 
 SEC("lsm/inode_mknod")
-int BPF_PROG(
+int BPFJ_LSM_INODE_PROG(
     bpfj_fs_inode_mknod,
     struct inode* dir,
     struct dentry* dentry,
@@ -265,7 +266,7 @@ int BPF_PROG(
 }
 
 SEC("lsm/inode_mkdir")
-int BPF_PROG(
+int BPFJ_LSM_INODE_PROG(
     bpfj_fs_inode_mkdir,
     struct inode* dir,
     struct dentry* dentry,
@@ -333,7 +334,7 @@ int BPF_PROG(
 }
 
 SEC("lsm/inode_symlink")
-int BPF_PROG(
+int BPFJ_LSM_INODE_PROG(
     bpfj_fs_inode_symlink,
     struct inode* dir,
     struct dentry* dentry,
